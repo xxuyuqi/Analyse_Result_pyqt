@@ -5,8 +5,8 @@ import h5py
 
 
 def assem_array(gene_array):
-    ele_array = np.ones([120, 100], dtype=int)
-    ele_array[10:-10,:] = np.c_[gene_array, gene_array[:,::-1]]
+    ele_array = np.ones([70, 80], dtype=int)
+    ele_array[5:-5,:] = np.c_[gene_array, gene_array[:,::-1]]
     return ele_array
     
 

@@ -60,7 +60,8 @@ class MainWin(QWidget, Ui_Form):
             self.pushButton_2.setEnabled(True)
             self.pushButton_4.setEnabled(True)
             self.pushButton_5.setEnabled(True)
-            print(hdf['/log'][0].decode())
+            message = '<p>' + hdf['/log'][0].decode() + '</p>'
+            QMessageBox.information(self, "parameter", message)
     
     def exit_app(self):
         if self.hdf:

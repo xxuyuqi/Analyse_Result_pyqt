@@ -71,11 +71,11 @@ def transfer(root:str)->None:
 
 
 if __name__ == "__main__":
-    # data_dir = r"C:\Users\uiaiu\Desktop\31"
+    # data_dir = r"E:\data\tmp"
     # exclude_dir = ["hdf"]
     # for d in os.listdir(data_dir):
     #     if d in exclude_dir:
     #         continue
     #     transfer(join(data_dir, d))
-    troot = r"C:\Users\uiaiu\Desktop\32"
+    troot = r"G:\data\35"
     transfer(troot)
