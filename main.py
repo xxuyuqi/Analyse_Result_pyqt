@@ -3,6 +3,7 @@ import os.path
 import numpy as np
 import h5py
 from PyQt5.QtWidgets import QWidget, QApplication, QFileDialog, QMessageBox, QButtonGroup
+from PyQt5 import QtCore, QtGui
 from mainwindow import Ui_Form
 from plot_fun import Plotfun
 
@@ -37,7 +38,7 @@ class MainWin(QWidget, Ui_Form):
 
         if filename:
             self.open_file(filename)
-        
+
     def open_file(self, filename):
         """
         Open a hdf5 file
@@ -59,6 +60,7 @@ class MainWin(QWidget, Ui_Form):
             self.pushButton_2.setEnabled(True)
             self.pushButton_4.setEnabled(True)
             self.pushButton_5.setEnabled(True)
+            print(hdf['/log'][0].decode())
     
     def exit_app(self):
         if self.hdf:
@@ -160,8 +162,24 @@ class MainWin(QWidget, Ui_Form):
     def next_dir(self):
         self.spinBox.stepUp()
         self.plot()
-
     
+    def get_dropped_file(self, event : QtGui.QDragEnterEvent):
+        return event.mimeData().urls()[-1].toLocalFile()
+
+
+    # Event
+    def dragEnterEvent(self, a0: QtGui.QDragEnterEvent) -> None:
+        a0.accept() if self.get_dropped_file(a0) else a0.ignore
+    
+
+    def dropEvent(self, a0: QtGui.QDropEvent) -> None:
+        self.open_file(self.get_dropped_file(a0))
+    
+    def closeEvent(self, a0: QtGui.QCloseEvent) -> None:
+        self.exit_app()
+        a0.accept()
+
+
     def connect_slot(self):
         self.pushButton.clicked.connect(self.data_open)
         self.pushButton_10.released.connect(self.exit_app)
