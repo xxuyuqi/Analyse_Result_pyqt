@@ -76,7 +76,6 @@ class MainWin(QWidget, Ui_Form):
         reply = QMessageBox.question(None, "Message", "You sure to plot?", QMessageBox.Yes|QMessageBox.No, QMessageBox.Yes)
         if reply == QMessageBox.No:
             return
-        Plotfun.close_all()
         if self.checkBox.isChecked():
             self.best_data(-1)
         else:
@@ -85,7 +84,7 @@ class MainWin(QWidget, Ui_Form):
     
     def best_data(self, i):
         arrData = self.hdf["/bestInd/chrom"][i, :, :]
-        name = self.hdf["/bestInd/name"][i].decode()
+        name = self.hdf["/bestInd/name"][i].decode().strip()
         loc = '/evoData/' + name.split('-i')[0] + '/' + name
         try:
             lcData = self.hdf[loc]

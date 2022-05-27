@@ -71,11 +71,12 @@ def transfer(root:str)->None:
 
 
 if __name__ == "__main__":
-    # data_dir = r"E:\data\tmp"
-    # exclude_dir = ["hdf"]
-    # for d in os.listdir(data_dir):
-    #     if d in exclude_dir:
-    #         continue
-    #     transfer(join(data_dir, d))
-    troot = r"G:\data\35"
-    transfer(troot)
+    data_dir = r"C:\Users\air\Desktop\qqq"
+    exclude_dir = ["hdf"]
+    for d in os.listdir(data_dir):
+        if d in exclude_dir:
+            continue
+        transfer(join(data_dir, d))
+        rmtree(join(data_dir, d))
+    # troot = r"G:\data\35"
+    # transfer(troot)
