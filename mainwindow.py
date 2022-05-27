@@ -261,7 +261,7 @@ class Ui_Form(object):
         self.pushButton_5.setText(_translate("Form", "Plot"))
         self.pushButton_9.setText(_translate("Form", "Close"))
         self.pushButton.setText(_translate("Form", "Data directory"))
-        self.pushButton_10.setText(_translate("Form", "Exit"))
+        self.pushButton_10.setText(_translate("Form", "Close File"))
         self.pushButton_6.setText(_translate("Form", "Time figure"))
         self.pushButton_3.setText(_translate("Form", "Next directory"))
         self.label_4.setText(_translate("Form", "um"))

@@ -63,11 +63,11 @@ class MainWin(QWidget, Ui_Form):
             message = '<p>' + hdf['/log'][0].decode() + '</p>'
             QMessageBox.information(self, "parameter", message)
     
-    def exit_app(self):
+    def close_file(self):
         if self.hdf:
             self.hdf.close()
-        np.savetxt("config.ini", self.para, fmt='%.2f', delimiter=',')
-        self.app.exit()
+        self.label.setText('')
+        
     
     def para_edit(self):
         self.para = [float(self.lineEdit_3.text()), float(self.lineEdit_4.text()), float(self.lineEdit_5.text())]
@@ -77,10 +77,14 @@ class MainWin(QWidget, Ui_Form):
         if reply == QMessageBox.No:
             return
         if self.checkBox.isChecked():
-            self.best_data(-1)
+            bi = self.best_data(-1)
         else:
             for i in range(self.hdf['/bestInd/chrom'].shape[0]):
-                self.best_data(i)
+                bi = self.best_data(i)
+        bi = bi.split('-')
+        self.spinBox.setValue(int(bi[1]))
+        self.spinBox_2.setValue(int(bi[3]))
+    
     
     def best_data(self, i):
         arrData = self.hdf["/bestInd/chrom"][i, :, :]
@@ -97,6 +101,7 @@ class MainWin(QWidget, Ui_Form):
         else:
             Plotfun.plot_curve(lcData, self.para)
         Plotfun.show()
+        return name
 
     def save_data(self):
         gen = self.spinBox.value()
@@ -112,15 +117,19 @@ class MainWin(QWidget, Ui_Form):
         chromloc = "/".join(["/evoData", gdir, "chrom"])
         lc_loc = "/".join(["/evoData", gdir, indname])
         fn = "D:\\"+indname
-        if self.qbg.checkedId != 2:
+        if self.qbg.checkedId() != 2:
             chrom = self.hdf[chromloc][ind-1, :, :]
             np.savetxt(fn+"_struc.csv", chrom, fmt="%d", delimiter=',')
+        else:
+            chrom = None
         try:
             lcData = self.hdf[lc_loc]
         except:
             lcData = None
-        if lcData and self.qbg.checkedId!=1:
-            np.savetxt(fn+"_lc.csv", chrom, fmt="%.6f", delimiter=',')
+        if lcData and self.qbg.checkedId()!=1:
+            np.savetxt(fn+"_lc.csv", lcData, fmt="%.6f", delimiter=',')
+        if chrom:
+            QMessageBox.information(self, "Infromation", f"Files saved successfully, Solid occupancy:{(np.sum(chrom)+10)/28:.4}%")
 
     def plot(self):
         gen = self.spinBox.value()
@@ -176,13 +185,15 @@ class MainWin(QWidget, Ui_Form):
         self.open_file(self.get_dropped_file(a0))
     
     def closeEvent(self, a0: QtGui.QCloseEvent) -> None:
-        self.exit_app()
+        self.close_file()
+        np.savetxt("config.ini", self.para, fmt='%f')
+        self.app.exit()
         a0.accept()
 
 
     def connect_slot(self):
         self.pushButton.clicked.connect(self.data_open)
-        self.pushButton_10.released.connect(self.exit_app)
+        self.pushButton_10.released.connect(self.close_file)
         for qo in (self.lineEdit_3, self.lineEdit_4, self.lineEdit_5):
             qo.editingFinished.connect(self.para_edit)
         self.pushButton_2.clicked.connect(self.plot_best)
