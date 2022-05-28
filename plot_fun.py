@@ -6,7 +6,7 @@ class Plotfun:
     def plot_curve(data, para, pax=None):
         ud, fd, r = para
         ax=pax if pax is not None else plt.figure(figsize=[8, 6]).add_axes([0.15, 0.15, 0.8, 0.8])
-        ax.set_xlabel(r'$x(mm)$', fontsize=17)
+        ax.set_xlabel(r'$x(\mathrn{mm})$', fontsize=17)
         ax.set_ylabel(r'$F(N)$', fontsize=17)
         ax.scatter(data[0], data[1], marker='o', c='#ec7e2e', label='Optimized')
         # ax.plot(x[:21], y[:21], lw=2.0, c='#4a72b7', ls='--')
