@@ -245,6 +245,24 @@ class Ui_Form(object):
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
+        Form.setTabOrder(self.lineEdit_3, self.lineEdit_4)
+        Form.setTabOrder(self.lineEdit_4, self.lineEdit_5)
+        Form.setTabOrder(self.lineEdit_5, self.spinBox)
+        Form.setTabOrder(self.spinBox, self.spinBox_2)
+        Form.setTabOrder(self.spinBox_2, self.checkBox)
+        Form.setTabOrder(self.checkBox, self.radioButton)
+        Form.setTabOrder(self.radioButton, self.radioButton_2)
+        Form.setTabOrder(self.radioButton_2, self.radioButton_3)
+        Form.setTabOrder(self.radioButton_3, self.pushButton)
+        Form.setTabOrder(self.pushButton, self.pushButton_2)
+        Form.setTabOrder(self.pushButton_2, self.pushButton_3)
+        Form.setTabOrder(self.pushButton_3, self.pushButton_4)
+        Form.setTabOrder(self.pushButton_4, self.pushButton_5)
+        Form.setTabOrder(self.pushButton_5, self.pushButton_6)
+        Form.setTabOrder(self.pushButton_6, self.pushButton_7)
+        Form.setTabOrder(self.pushButton_7, self.pushButton_8)
+        Form.setTabOrder(self.pushButton_8, self.pushButton_9)
+        Form.setTabOrder(self.pushButton_9, self.pushButton_10)
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
@@ -272,3 +290,4 @@ class Ui_Form(object):
         self.radioButton.setText(_translate("Form", "union"))
         self.radioButton_2.setText(_translate("Form", "structure"))
         self.radioButton_3.setText(_translate("Form", "curve"))
+
