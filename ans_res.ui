@@ -164,6 +164,9 @@
          <verstretch>1</verstretch>
         </sizepolicy>
        </property>
+       <property name="maximum">
+        <number>10000</number>
+       </property>
       </widget>
      </item>
     </layout>
@@ -258,7 +261,7 @@
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>Exit</string>
+      <string>Close File</string>
      </property>
      <property name="checkable">
       <bool>false</bool>

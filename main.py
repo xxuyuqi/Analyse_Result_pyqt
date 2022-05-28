@@ -128,8 +128,8 @@ class MainWin(QWidget, Ui_Form):
             lcData = None
         if lcData and self.qbg.checkedId()!=1:
             np.savetxt(fn+"_lc.csv", lcData, fmt="%.6f", delimiter=',')
-        if chrom:
-            QMessageBox.information(self, "Infromation", f"Files saved successfully, Solid occupancy:{(np.sum(chrom)+10)/28:.4}%")
+        if chrom is not None:
+            QMessageBox.information(self, "Infromation", f"Files saved successfully, Solid occupancy : {(np.sum(chrom)+400)/28:.4}%")
 
     def plot(self):
         gen = self.spinBox.value()

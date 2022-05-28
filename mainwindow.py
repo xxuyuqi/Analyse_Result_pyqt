@@ -106,6 +106,7 @@ class Ui_Form(object):
         sizePolicy.setVerticalStretch(1)
         sizePolicy.setHeightForWidth(self.spinBox.sizePolicy().hasHeightForWidth())
         self.spinBox.setSizePolicy(sizePolicy)
+        self.spinBox.setMaximum(10000)
         self.spinBox.setObjectName("spinBox")
         self.formLayout_4.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.spinBox)
         self.gridLayout.addLayout(self.formLayout_4, 3, 2, 1, 1)
