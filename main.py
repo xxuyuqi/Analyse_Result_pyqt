@@ -2,7 +2,8 @@ import sys
 import os.path
 import numpy as np
 import h5py
-from PyQt5.QtWidgets import QWidget, QApplication, QFileDialog, QMessageBox, QButtonGroup
+from PyQt5.QtWidgets import QWidget, QApplication, \
+    QFileDialog, QMessageBox, QButtonGroup
 from PyQt5 import QtCore, QtGui
 from mainwindow import Ui_Form
 from plot_fun import Plotfun
@@ -14,17 +15,21 @@ class MainWin(QWidget, Ui_Form):
         self.setAcceptDrops(True)
         self.app = app
         self.setupUi(self)
-        self.qbg = QButtonGroup()
-        self.qbg.addButton(self.radioButton, 0)
-        self.qbg.addButton(self.radioButton_2, 1)
-        self.qbg.addButton(self.radioButton_3, 2)
-        self.setWindowTitle("Result")
+        self.create_more_widget()
         self.hdf = None
         self.para = np.loadtxt('config.ini', delimiter=',') if os.path.isfile("config.ini") else (6.0, 1000.0, 1.0) # x, f, r
         self.lineEdit_3.setText(str(self.para[0]))
         self.lineEdit_4.setText(str(self.para[1]))
         self.lineEdit_5.setText(str(self.para[2]))
         self.connect_slot()
+    
+    def create_more_widget(self):
+        self.setWindowIcon(QtGui.QIcon(r"E:\OneDrive - tju.edu.cn\source\source_repository\202107\analyse_result\qt_ans\icon.png"))
+        self.qbg = QButtonGroup()
+        self.qbg.addButton(self.radioButton, 0)
+        self.qbg.addButton(self.radioButton_2, 1)
+        self.qbg.addButton(self.radioButton_3, 2)
+        self.setWindowTitle("Result")
 
     def data_open(self):
         options = QFileDialog.Options()
