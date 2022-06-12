@@ -177,6 +177,11 @@ class MainWin(QWidget, Ui_Form):
         self.spinBox.stepUp()
         self.plot()
     
+    def evo_curve(self):
+        fit = self.hdf['/bestInd/fitness'][()]
+        name = self.hdf['/bestInd/name'][()]
+        Plotfun.evo_curve(name, fit)
+    
     def get_dropped_file(self, event : QtGui.QDragEnterEvent):
         return event.mimeData().urls()[-1].toLocalFile()
 
@@ -206,7 +211,7 @@ class MainWin(QWidget, Ui_Form):
         self.pushButton_5.clicked.connect(self.plot)
         self.pushButton_9.released.connect(Plotfun.close_all)
         self.pushButton_3.clicked.connect(self.next_dir)
-
+        self.pushButton_7.clicked.connect(self.evo_curve)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

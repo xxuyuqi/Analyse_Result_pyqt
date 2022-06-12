@@ -39,6 +39,25 @@ class Plotfun:
         Plotfun.plot_curve(data, para, ax[1])
         plt.tight_layout()
     
+    def evo_curve(name, fitness):
+        Gen = [int(name[i].decode().split('-')[1]) for i in range(len(name))]
+        fit = fitness%100000
+        fig = plt.figure(figsize=[8, 4])
+        ax = fig.add_axes([0.15, 0.15, 0.8, 0.8])
+        ax.set_xlabel(r'Generation', fontsize=17)
+        ax.set_ylabel(r'Fitness', fontsize=17)
+        ax.plot(Gen, fit, lw=2.0, c='#4a72b7')
+        ax.tick_params(axis='both', labelsize=15)
+        ax.spines['bottom'].set_linewidth(0.75)
+        ax.spines['left'].set_linewidth(0.75)
+        ax.spines['top'].set_linewidth(0.75)
+        ax.spines['right'].set_linewidth(0.75)
+        ax.ticklabel_format(axis='y', style='sci', scilimits=(0, 4),
+                        useMathText=True)
+        ax.set_xlim(0)
+        ax.set_ylim(0)
+        plt.pause(0.2)
+    
     def close_all():
         plt.close("all")
     
