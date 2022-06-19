@@ -8,6 +8,13 @@ def assem_array(gene_array):
     ele_array = np.ones([70, 80], dtype=int)
     ele_array[5:-5,:] = np.c_[gene_array, gene_array[:,::-1]]
     return ele_array
+
+
+# def assem_array(gene_array):
+#     tmp = np.r_[gene_array, gene_array[::-1, :], gene_array]
+#     ele_array = np.ones([100,80], dtype=int)
+#     ele_array[5:-5,:] = np.c_[tmp, tmp[:,::-1]]
+#     return ele_array
     
 
 def read_file(fnf):

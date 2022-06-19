@@ -24,7 +24,7 @@ class MainWin(QWidget, Ui_Form):
         self.connect_slot()
     
     def create_more_widget(self):
-        self.setWindowIcon(QtGui.QIcon(r"E:\OneDrive - tju.edu.cn\source\source_repository\202107\analyse_result\qt_ans\icon.png"))
+        self.setWindowIcon(QtGui.QIcon(os.path.join(os.environ['OneDriveCommercial'], "source\source_repository\202107\analyse_result\qt_ans\icon.png")))
         self.qbg = QButtonGroup()
         self.qbg.addButton(self.radioButton, 0)
         self.qbg.addButton(self.radioButton_2, 1)
