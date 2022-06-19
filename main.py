@@ -174,6 +174,7 @@ class MainWin(QWidget, Ui_Form):
         Plotfun.show()
 
     def next_dir(self):
+        Plotfun.close_all()
         self.spinBox.stepUp()
         self.plot()
     
